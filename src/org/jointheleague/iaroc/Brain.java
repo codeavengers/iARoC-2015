@@ -9,7 +9,7 @@ import org.jointheleague.iaroc.sensors.UltraSonicSensors;
 public class Brain extends IRobotCreateAdapter {
     private final Dashboard dashboard;
     public UltraSonicSensors sonar;
-
+    int number = 0;
     public Brain(IOIO ioio, IRobotCreateInterface create, Dashboard dashboard)
             throws ConnectionLostException {
         super(create);
@@ -21,11 +21,36 @@ public class Brain extends IRobotCreateAdapter {
     public void initialize() throws ConnectionLostException {
         dashboard.log("Hello! I'm a Clever Robot!");
         //what would you like me to do, Clever Human?
-
+        //driveDirect(500, 500);
 
 
 
     }
+
     /* This method is called repeatedly. */
-    public void loop() throws ConnectionLostException {}
+    public void loop() throws ConnectionLostException {
+        readSensors(SENSORS_INFRARED_BYTE);
+        dashboard.speak("" + getInfraredByte());
+
+        }
+
+    //readSensors(SENSORS_WALL);
+    //dashboard.speak("" + getWallSignal());
+    //if(getWallSignal()>1){
+    //dashboard.speak("nobody puts baby in a corner");
+
+
+
+        // readSensors(SENSORS_DISTANCE);
+        //number = number + getDistance();
+       // readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+       // readSensors(SENSORS_DISTANCE);
+        //number = number + getDistance();
+    //if(isBumpRight() || isBumpLeft()) {
+        //readSensors(SENSORS_DISTANCE);
+        //number = number + getDistance();
+        //dashboard.speak(number + ".");
+
+
+
 }
