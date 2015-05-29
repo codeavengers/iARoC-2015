@@ -1,5 +1,7 @@
 package org.jointheleague.iaroc;
 
+import android.os.SystemClock;
+
 import ioio.lib.api.IOIO;
 import ioio.lib.api.exception.ConnectionLostException;
 import org.wintrisstech.irobot.ioio.IRobotCreateAdapter;
@@ -20,7 +22,7 @@ public class Brain extends IRobotCreateAdapter {
     /* This method is executed when the robot first starts up. */
     public void initialize() throws ConnectionLostException {
         dashboard.log("Hello! I'm a Clever Robot!");
-        //what would you like me to do, Clever Human?
+       //what would you like me to do, Clever Human?
         //driveDirect(500, 500);
 
 
@@ -30,27 +32,27 @@ public class Brain extends IRobotCreateAdapter {
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {
         readSensors(SENSORS_INFRARED_BYTE);
-        dashboard.speak("" + getInfraredByte());
+        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+        int ir = getInfraredByte();
+        if(isBumpRight()){
+            driveDirect(-500, 0);
+            SystemClock.sleep(2000);
+            driveDirect(500, 500);
+        }
+        dashboard.log("." + ir);
+      if (ir == 248){
+          driveDirect(475,500);
+
+      }
+        if (ir == 244){
+            driveDirect(500,475);
+        }
+        if (ir == 255){
+            driveDirect(-500,500);
 
         }
 
-    //readSensors(SENSORS_WALL);
-    //dashboard.speak("" + getWallSignal());
-    //if(getWallSignal()>1){
-    //dashboard.speak("nobody puts baby in a corner");
 
 
 
-        // readSensors(SENSORS_DISTANCE);
-        //number = number + getDistance();
-       // readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
-       // readSensors(SENSORS_DISTANCE);
-        //number = number + getDistance();
-    //if(isBumpRight() || isBumpLeft()) {
-        //readSensors(SENSORS_DISTANCE);
-        //number = number + getDistance();
-        //dashboard.speak(number + ".");
-
-
-
-}
+}}
