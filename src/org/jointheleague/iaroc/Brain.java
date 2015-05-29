@@ -30,10 +30,65 @@ public class Brain extends IRobotCreateAdapter {
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {
         readSensors(SENSORS_INFRARED_BYTE);
-        dashboard.speak("" + getInfraredByte());
+      readSensors(SENSORS_WALL);
+        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+       int sensor = getInfraredByte();
 
+
+        if(sensor == 255)
+        {
+      driveDirect(250,250);
         }
 
+        if (sensor == 248)
+        {
+
+            driveDirect(300, 241);
+        }
+
+        if (sensor == 244)
+        {
+           driveDirect (241, 300);
+        }
+            if (sensor == 242)
+            {
+           driveDirect (250, 250);
+
+            }
+
+        readSensors(SENSORS_INFRARED_BYTE);
+        readSensors(SENSORS_WALL);
+        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+        int sensor = getInfraredByte();
+
+
+        if(sensor == 255)
+        {
+            driveDirect(250,250);
+        }
+
+        if (sensor == 248)
+        {
+
+            driveDirect(300, 241);
+        }
+
+        if (sensor == 244)
+        {
+            driveDirect (241, 300);
+        }
+        if (sensor == 242)
+        {
+            driveDirect (250, 250);
+
+
+
+
+
+
+
+
+    //dashboard.speak("" + getInfraredByte());
     //readSensors(SENSORS_WALL);
     //dashboard.speak("" + getWallSignal());
     //if(getWallSignal()>1){
@@ -53,4 +108,4 @@ public class Brain extends IRobotCreateAdapter {
 
 
 
-}
+} }
