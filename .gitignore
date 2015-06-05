@@ -5,4 +5,3 @@ local.properties
 .DS_Store
 build
 
-src/org/jointheleague/iaroc/Brain.java
