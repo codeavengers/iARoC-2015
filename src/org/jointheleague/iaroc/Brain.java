@@ -33,20 +33,20 @@ public class Brain extends IRobotCreateAdapter {
 
         readSensors(SENSORS_INFRARED_BYTE);
         readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
-        int ir = getInfraredByte();
-        //iARoc2015GoldRush();
+       // int ir = getInfraredByte();
+        iARoc2015GoldRush();
         //iARoc2015DragRace();
-        driveDirect(500,500);
-        if(isBumpLeft());
-        {
-        driveDirect(-300,-500);
-            driveDirect(500,500);
-        }
-        if(isBumpRight());
-        {
-            driveDirect(-500,-300);
-            driveDirect(500,500);
-        }
+//        driveDirect(500,500);
+//        if(isBumpLeft());
+//        {
+//        driveDirect(-300,-500);
+//            driveDirect(500,500);
+//        }
+//        if(isBumpRight());
+//        {
+//            driveDirect(-500,-300);
+//            driveDirect(500,500);
+//        }
 
 
 
@@ -57,38 +57,46 @@ public class Brain extends IRobotCreateAdapter {
 
     }
 
-    public void iARoc2015GoldRush() {
-        //           driveDirect(500, 500);
-//            SystemClock.sleep(1000);
-//          driveDirect(500, -500);
-//      SystemClock.sleep(1000);
+    public void iARoc2015GoldRush() throws ConnectionLostException{
+        int ir = getInfraredByte();
+        driveDirect(500, 500);
+        SystemClock.sleep(1000);
+        driveDirect(500, -500);
+        SystemClock.sleep(1000);
 
-//        dashboard.log("." + ir);
-//        if (ir == 248) {
-//            driveDirect(475, 500);
-//
-//        }
-//        if (ir == 244) {
-//            driveDirect(500, 475);
-//        }
-//        if (ir == 255) {
-//            driveDirect(500, 500);
-//
-//        }
-//        if (ir == 246) {
-//            driveDirect(450, 500);
-//        }
-//        if (ir == 242) {
-//            driveDirect(450, 450);
-//        }
-//        if (ir == 254) {
-//            driveDirect(500, 500);
-//        }
-//        if (ir == 250) {
-//            driveDirect(500, 450);
-//        }
-//}}
-    }
+
+        if (ir == 248) {
+            driveDirect(475, 500);
+            SystemClock.sleep(1000);
+
+        }
+        if (ir == 244) {
+            driveDirect(500, 475);
+            SystemClock.sleep(1000);
+        }
+        if (ir == 255) {
+            driveDirect(500, 500);
+            SystemClock.sleep(1000);
+
+        }
+        if (ir == 246) {
+            driveDirect(450, 500);
+            SystemClock.sleep(1000);
+        }
+        if (ir == 242) {
+            driveDirect(450, 450);
+            SystemClock.sleep(1000);
+        }
+        if (ir == 254) {
+            driveDirect(500, 500);
+            SystemClock.sleep(1000);
+        }
+        if (ir == 250) {
+            driveDirect(500, 450);
+            SystemClock.sleep(1000);
+        }
+}
+
 
     public void iARoc2015DragRace() throws ConnectionLostException {
         driveDirect(500, 500);
