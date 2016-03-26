@@ -35,6 +35,7 @@ public class Brain extends IRobotCreateAdapter {
         readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
        // int ir = getInfraredByte();
         iARoc2015GoldRush();
+        SystemClock.sleep(1000);
         //iARoc2015DragRace();
 //        driveDirect(500,500);
 //        if(isBumpLeft());
@@ -59,47 +60,22 @@ public class Brain extends IRobotCreateAdapter {
 
     public void iARoc2015GoldRush() throws ConnectionLostException{
         int ir = getInfraredByte();
+        driveDirect(50, 50);
+        SystemClock.sleep(1000);
+        driveDirect(50, -50);
+        while(ir == 255) {//seeing nothing
+
+          driveDirect(50, -50);
+            readSensors(SENSORS_INFRARED_BYTE);
+            ir = getInfraredByte();
+            dashboard.log(ir + "");
+        }
         driveDirect(500, 500);
-        SystemClock.sleep(1000);
-        driveDirect(500, -500);
-        SystemClock.sleep(1000);
-
-
-        if (ir == 248) {
-            driveDirect(475, 500);
-            SystemClock.sleep(1000);
-
-        }
-        if (ir == 244) {
-            driveDirect(500, 475);
-            SystemClock.sleep(1000);
-        }
-        if (ir == 255) {
-            driveDirect(500, 500);
-            SystemClock.sleep(1000);
-
-        }
-        if (ir == 246) {
-            driveDirect(450, 500);
-            SystemClock.sleep(1000);
-        }
-        if (ir == 242) {
-            driveDirect(450, 450);
-            SystemClock.sleep(1000);
-        }
-        if (ir == 254) {
-            driveDirect(500, 500);
-            SystemClock.sleep(1000);
-        }
-        if (ir == 250) {
-            driveDirect(500, 450);
-            SystemClock.sleep(1000);
-        }
 }
 
 
     public void iARoc2015DragRace() throws ConnectionLostException {
-        driveDirect(500, 500);
+        driveDirect(498, 499);
         if(isBumpRight()){
             driveDirect(0, -500);
             SystemClock.sleep(500);
