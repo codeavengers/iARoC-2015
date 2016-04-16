@@ -31,11 +31,11 @@ public class Brain extends IRobotCreateAdapter {
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {
 
-        readSensors(SENSORS_INFRARED_BYTE);
-        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+//        readSensors(SENSORS_INFRARED_BYTE);
+//        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
        // int ir = getInfraredByte();
         iARoc2015GoldRush();
-        SystemClock.sleep(1000);
+
         //iARoc2015DragRace();
 //        driveDirect(500,500);
 //        if(isBumpLeft());
@@ -59,19 +59,22 @@ public class Brain extends IRobotCreateAdapter {
     }
 
     public void iARoc2015GoldRush() throws ConnectionLostException{
-        int ir = getInfraredByte();
-        driveDirect(50, 50);
-        SystemClock.sleep(1000);
-        driveDirect(50, -50);
-        while(ir == 255) {//seeing nothing
-
-          driveDirect(50, -50);
-            readSensors(SENSORS_INFRARED_BYTE);
-            ir = getInfraredByte();
-            dashboard.log(ir + "");
-        }
-        driveDirect(500, 500);
+        spin();
 }
+
+    private void spin() throws ConnectionLostException {
+        readSensors(SENSORS_INFRARED_BYTE);
+        int ir = getInfraredByte();
+        driveDirect(-100, 100);
+        dashboard.log(ir + "");
+        while(ir != 255) {//seeing nothing
+            driveDirect(50, 50);
+            SystemClock.sleep(2000);
+            driveDirect(-100, 100);
+
+        }
+
+    }
 
 
     public void iARoc2015DragRace() throws ConnectionLostException {
