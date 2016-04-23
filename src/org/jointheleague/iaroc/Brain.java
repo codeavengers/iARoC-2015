@@ -31,23 +31,9 @@ public class Brain extends IRobotCreateAdapter {
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {
 
-//        readSensors(SENSORS_INFRARED_BYTE);
-//        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
-       // int ir = getInfraredByte();
-        iARoc2015GoldRush();
-
-        //iARoc2015DragRace();
-//        driveDirect(500,500);
-//        if(isBumpLeft());
-//        {
-//        driveDirect(-300,-500);
-//            driveDirect(500,500);
-//        }
-//        if(isBumpRight());
-//        {
-//            driveDirect(-500,-300);
-//            driveDirect(500,500);
-//        }
+        readSensors(SENSORS_INFRARED_BYTE);
+       readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
+        iARoc2016Maze();
 
 
 
@@ -58,11 +44,9 @@ public class Brain extends IRobotCreateAdapter {
 
     }
 
-    public void iARoc2015GoldRush() throws ConnectionLostException{
-        spin();
-}
 
-    private void spin() throws ConnectionLostException {
+
+    private void iARoc2016GoldRush() throws ConnectionLostException {
         readSensors(SENSORS_INFRARED_BYTE);
         int ir = getInfraredByte();
         driveDirect(-100, 100);
@@ -72,6 +56,15 @@ public class Brain extends IRobotCreateAdapter {
             SystemClock.sleep(2000);
             driveDirect(-100, 100);
 
+        }
+        if(ir == 245){
+            driveDirect(50, 50);
+        }
+        if(ir == 246){
+            driveDirect(50, 50);
+        }
+        if(ir == 247){
+            driveDirect(50, 50);
         }
 
     }
@@ -89,5 +82,20 @@ public class Brain extends IRobotCreateAdapter {
             SystemClock.sleep(500);
             driveDirect(500, 500);
         }
+    }
+    private void iARoc2016Maze() throws ConnectionLostException{
+        driveDirect(100, 300);
+        if (isBumpRight()){
+            driveDirect(100, -300);
+            SystemClock.sleep(450);
+            drive(400, 500);
+
+        }
+//        if (isBumpLeft()){
+//            driveDirect(-300, 100);
+//            SystemClock.sleep(450);
+//            drive(400, 500);
+//
+//        }
     }
 }
