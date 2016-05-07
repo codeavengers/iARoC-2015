@@ -8,7 +8,8 @@ import org.wintrisstech.irobot.ioio.IRobotCreateAdapter;
 import org.wintrisstech.irobot.ioio.IRobotCreateInterface;
 import org.jointheleague.iaroc.sensors.UltraSonicSensors;
 
-public class Brain extends IRobotCreateAdapter {
+public class
+        Brain extends IRobotCreateAdapter {
     private final Dashboard dashboard;
     public UltraSonicSensors sonar;
     int number = 0;
@@ -84,9 +85,11 @@ public class Brain extends IRobotCreateAdapter {
         }
     }
     private void iARoc2016Maze() throws ConnectionLostException{
-        driveDirect(100, 300);
+        driveDirect(0, 350);
         if (isBumpRight()){
             driveDirect(100, -300);
+            SystemClock.sleep(450);
+            driveDirect(300, 300);
             SystemClock.sleep(450);
             drive(400, 500);
 
