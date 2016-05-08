@@ -85,10 +85,10 @@ public class
         }
     }
     private void iARoc2016Maze() throws ConnectionLostException{
-        driveDirect(150, 400);
+        driveDirect(200, 500);
         if (isBumpRight()){
             driveDirect(100, -400);
-            SystemClock.sleep(450);
+            SystemClock.sleep(300);
             driveDirect(300, 300);
             SystemClock.sleep(300);
             drive(400, 500);
