@@ -31,7 +31,7 @@ public class
 
     /* This method is called repeatedly. */
     public void loop() throws ConnectionLostException {
-
+        readSensors(SENSORS_WALL_SIGNAL);
         readSensors(SENSORS_INFRARED_BYTE);
        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
         iARoc2016Maze();
@@ -85,12 +85,14 @@ public class
         }
     }
     private void iARoc2016Maze() throws ConnectionLostException{
+        int wall = getWallSignal();
+        dashboard.log(wall + "");
         driveDirect(200, 500);
-        if (isBumpRight()){
-            driveDirect(100, -400);
+        if (isBumpRight()|| wall > 1 ){
+            driveDirect(400, 50);
             SystemClock.sleep(300);
-            driveDirect(300, 300);
-            SystemClock.sleep(300);
+//            driveDirect(300, 300);
+//            SystemClock.sleep(300);
             drive(400, 500);
 
         }
