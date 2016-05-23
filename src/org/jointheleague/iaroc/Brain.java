@@ -87,18 +87,23 @@ public class
     private void iARoc2016Maze() throws ConnectionLostException{
         int wall = getWallSignal();
         dashboard.log(wall + "");
-        driveDirect(200, 500);
-        if (isBumpRight()|| wall > 1 ){
-            driveDirect(400, 50);
+       driveDirect(150, 500);
+        if (wall > 3){
+            driveDirect(400, 200);
             SystemClock.sleep(300);
-//            driveDirect(300, 300);
-//            SystemClock.sleep(300);
-            drive(400, 500);
+
+        }
+       readSensors(6);
+        if (isBumpRight()) {
+            driveDirect(100, -400);
+            SystemClock.sleep(600);
+            drive(300, 500);
+            dashboard.log("BumpedRight!");
 
         }
 //        if (isBumpLeft()){
-//            driveDirect(-300, 100);
-//            SystemClock.sleep(450);
+//            driveDirect(-400, 0);
+//            SystemClock.sleep(700);
 //            drive(400, 500);
 //
 //        }
