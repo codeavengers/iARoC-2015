@@ -25,8 +25,6 @@ public class
         dashboard.log("Hello! I'm a Clever Robot!");
         //what would you like me to do, Clever Human?
         //driveDirect(500, 500);
-
-
     }
 
     /* This method is called repeatedly. */
@@ -34,15 +32,9 @@ public class
         readSensors(SENSORS_WALL_SIGNAL);
         readSensors(SENSORS_INFRARED_BYTE);
        readSensors(SENSORS_BUMPS_AND_WHEEL_DROPS);
-        iARoc2016Maze();
-
-
-
-
-
-
-
-
+        //iARoc2016Maze();
+        //iARoc2016GoldRush();
+        iARoc2015DragRace();
     }
 
 
@@ -50,39 +42,34 @@ public class
     private void iARoc2016GoldRush() throws ConnectionLostException {
         readSensors(SENSORS_INFRARED_BYTE);
         int ir = getInfraredByte();
-        driveDirect(-100, 100);
         dashboard.log(ir + "");
-        while(ir != 255) {//seeing nothing
+        if(ir != 255) {//seeing nothing
             driveDirect(50, 50);
-            SystemClock.sleep(2000);
+
+        }else{
+            driveDirect(50,50);
+            SystemClock.sleep(1000);
             driveDirect(-100, 100);
-
+            SystemClock.sleep(2000);
         }
-        if(ir == 245){
-            driveDirect(50, 50);
-        }
-        if(ir == 246){
-            driveDirect(50, 50);
-        }
-        if(ir == 247){
-            driveDirect(50, 50);
-        }
-
     }
 
 
     public void iARoc2015DragRace() throws ConnectionLostException {
-        driveDirect(498, 499);
-        if(isBumpRight()){
-            driveDirect(0, -500);
-            SystemClock.sleep(500);
-            driveDirect(500, 500);
-        }
-        if(isBumpLeft()){
-            driveDirect(-500, 0);
-            SystemClock.sleep(500);
-            driveDirect(500, 500);
-        }
+        int wall = getWallSignal();
+        dashboard.log(wall + "");
+//        driveDirect(498, 499);
+//        if(wall > 0){
+//            driveDirect(200, 300);
+//            SystemClock.sleep(300);
+//       }
+//        if(wall < 4000){
+//            driveDirect(200, 300);
+//            SystemClock.sleep(300);
+//
+//
+//
+//        }
     }
     private void iARoc2016Maze() throws ConnectionLostException{
         int wall = getWallSignal();
