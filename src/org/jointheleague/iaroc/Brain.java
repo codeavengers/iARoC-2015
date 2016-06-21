@@ -58,18 +58,15 @@ public class
     public void iARoc2015DragRace() throws ConnectionLostException {
         int wall = getWallSignal();
         dashboard.log(wall + "");
-//        driveDirect(498, 499);
-//        if(wall > 0){
-//            driveDirect(200, 300);
-//            SystemClock.sleep(300);
-//       }
-//        if(wall < 4000){
-//            driveDirect(200, 300);
-//            SystemClock.sleep(300);
-//
-//
-//
-//        }
+        driveDirect(498, 499);
+        if(wall > 0){
+            driveDirect(200, 300);
+            SystemClock.sleep(300);
+       }
+        if(wall < 4000){
+            driveDirect(300, 200);
+            SystemClock.sleep(300);
+        }
     }
     private void iARoc2016Maze() throws ConnectionLostException{
         int wall = getWallSignal();
